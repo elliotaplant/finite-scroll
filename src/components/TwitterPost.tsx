@@ -25,24 +25,9 @@ export default function TwitterPost({ tweet, user, media = [] }: TwitterPostProp
           className="rounded-full mr-3 w-12 h-12"
         />
         <div className="flex-1 min-w-0">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="font-bold">{user.name}</p>
-              <p className="text-gray-500 dark:text-gray-400">@{user.username}</p>
-            </div>
-            <Link
-              href={`https://twitter.com/${user.username}/status/${tweet.id}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-500 hover:underline"
-            >
-              <img
-                src="/window.svg"
-                alt="Open in Twitter"
-                className="inline-block mr-1 w-4 h-4"
-              />
-              <span>Open Original</span>
-            </Link>
+          <div>
+            <p className="font-bold">{user.name}</p>
+            <p className="text-gray-500 dark:text-gray-400">@{user.username}</p>
           </div>
         </div>
       </div>
