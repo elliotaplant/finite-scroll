@@ -60,6 +60,7 @@ export default function TwitterPost({
                   loop={item.type === "animated_gif"}
                   autoPlay={item.type === "animated_gif"}
                   muted={item.type === "animated_gif"}
+                  playsInline
                   className="w-full h-auto"
                 />
               ) : null}
