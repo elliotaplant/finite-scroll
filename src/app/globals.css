@@ -24,3 +24,64 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Custom styles for comment collapsing */
+details > summary {
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background-color: #f0f0f0;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #555;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+details > summary:hover {
+  background-color: #e8e8e8;
+  border-color: #d0d0d0;
+}
+
+details > summary:active {
+  background-color: #ddd;
+  transform: translateY(1px);
+}
+
+details > summary::before {
+  content: "+";
+  font-size: 14px;
+  font-weight: bold;
+  transition: transform 0.2s;
+}
+
+details[open] > summary::before {
+  content: "−"; /* em dash for minus sign */
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  details > summary {
+    background-color: #333;
+    border-color: #444;
+    color: #ccc;
+  }
+  
+  details > summary:hover {
+    background-color: #3a3a3a;
+    border-color: #555;
+  }
+  
+  details > summary:active {
+    background-color: #444;
+  }
+}
