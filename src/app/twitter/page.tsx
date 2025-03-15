@@ -54,17 +54,17 @@ export default async function TwitterPage({ searchParams }: PageProps) {
           <h1 className="text-2xl font-bold mb-4">Twitter/X Viewer</h1>
         </div>
 
-        <TwitterPost 
-          tweet={twitterData.tweet} 
-          user={twitterData.user} 
-          media={twitterData.media} 
+        <TwitterPost
+          tweet={twitterData.tweet}
+          user={twitterData.user}
+          media={twitterData.media}
         />
 
         {/* We could add replies here in the future when we get access to them */}
         <div className="flex items-center justify-between mt-8 mb-4">
           <h2 className="text-xl font-bold">Replies</h2>
         </div>
-        
+
         <div className="p-4 border border-gray-200 dark:border-gray-800 rounded-lg text-center">
           <p className="text-gray-500">
             Replies are not available through the current API.

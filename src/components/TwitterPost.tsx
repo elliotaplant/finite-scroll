@@ -2,7 +2,6 @@
 
 import { TwitterTweet, TwitterUser, TwitterMedia } from "@/types/twitter";
 import { formatDistanceToNow } from "date-fns";
-import Link from "next/link";
 import MarkdownRenderer from "./MarkdownRenderer";
 
 interface TwitterPostProps {
@@ -11,7 +10,11 @@ interface TwitterPostProps {
   media?: TwitterMedia[];
 }
 
-export default function TwitterPost({ tweet, user, media = [] }: TwitterPostProps) {
+export default function TwitterPost({
+  tweet,
+  user,
+  media = [],
+}: TwitterPostProps) {
   const formattedDate = formatDistanceToNow(new Date(tweet.created_at), {
     addSuffix: true,
   });
@@ -37,7 +40,11 @@ export default function TwitterPost({ tweet, user, media = [] }: TwitterPostProp
       </div>
 
       {media && media.length > 0 && (
-        <div className={`mb-3 grid ${media.length > 1 ? 'grid-cols-2 gap-2' : 'grid-cols-1'}`}>
+        <div
+          className={`mb-3 grid ${
+            media.length > 1 ? "grid-cols-2 gap-2" : "grid-cols-1"
+          }`}
+        >
           {media.map((item, index) => (
             <div key={index} className="rounded-lg overflow-hidden">
               {item.type === "photo" || item.type === "image" ? (

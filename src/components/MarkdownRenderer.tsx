@@ -11,27 +11,27 @@ export default function MarkdownRenderer({ children }: MarkdownRendererProps) {
   const isVideoLink = (url: string): boolean => {
     return /\.(mp4|webm|mov|ogg)$/i.test(url);
   };
-  
+
   // Function to check if a link is a YouTube video
   const isYoutubeLink = (url: string): boolean => {
-    return url.includes('youtube.com/watch') || url.includes('youtu.be/');
+    return url.includes("youtube.com/watch") || url.includes("youtu.be/");
   };
 
   // Function to get YouTube embed URL
   const getYoutubeEmbedUrl = (url: string): string => {
     let videoId;
-    
-    if (url.includes('youtube.com/watch')) {
+
+    if (url.includes("youtube.com/watch")) {
       const urlObj = new URL(url);
-      videoId = urlObj.searchParams.get('v');
-    } else if (url.includes('youtu.be/')) {
-      videoId = url.split('youtu.be/')[1].split('?')[0];
+      videoId = urlObj.searchParams.get("v");
+    } else if (url.includes("youtu.be/")) {
+      videoId = url.split("youtu.be/")[1].split("?")[0];
     }
-    
+
     if (videoId) {
       return `https://www.youtube.com/embed/${videoId}`;
     }
-    
+
     return url;
   };
 
@@ -44,11 +44,11 @@ export default function MarkdownRenderer({ children }: MarkdownRendererProps) {
             // Return as a sibling element instead of nested in a paragraph
             return (
               <span className="my-4 flex justify-center block">
-                <video 
-                  src={href} 
-                  controls 
+                <video
+                  src={href}
+                  controls
                   preload="metadata"
-                  className="max-w-full h-auto rounded-md" 
+                  className="max-w-full h-auto rounded-md"
                   playsInline
                 >
                   {children}
@@ -83,7 +83,11 @@ export default function MarkdownRenderer({ children }: MarkdownRendererProps) {
           }
         },
         // Style paragraphs
-        p: ({ children, ...props }) => <p {...props} className="mb-4">{children}</p>,
+        p: ({ children, ...props }) => (
+          <p {...props} className="mb-4">
+            {children}
+          </p>
+        ),
         // Style headings
         h1: ({ ...props }) => (
           <h1 {...props} className="text-2xl font-bold mb-4 mt-6" />
@@ -95,9 +99,7 @@ export default function MarkdownRenderer({ children }: MarkdownRendererProps) {
           <h3 {...props} className="text-lg font-bold mb-2 mt-4" />
         ),
         // Style lists
-        ul: ({ ...props }) => (
-          <ul {...props} className="list-disc pl-6 mb-4" />
-        ),
+        ul: ({ ...props }) => <ul {...props} className="list-disc pl-6 mb-4" />,
         ol: ({ ...props }) => (
           <ol {...props} className="list-decimal pl-6 mb-4" />
         ),
@@ -149,7 +151,7 @@ export default function MarkdownRenderer({ children }: MarkdownRendererProps) {
           <span className="flex justify-center my-4 block">
             <img
               {...props}
-              alt={props.alt || ''}
+              alt={props.alt || ""}
               className="max-w-full h-auto rounded-md"
               loading="lazy"
             />
