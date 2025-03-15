@@ -4,6 +4,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Custom styles for comment collapsing that can't be handled by Tailwind alone */
 details > summary {
   list-style: none;

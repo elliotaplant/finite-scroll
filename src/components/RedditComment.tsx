@@ -13,7 +13,7 @@ export default function RedditComment({ comment, depth = 0 }: RedditCommentProps
   
   const commentDate = new Date(comment.created_utc * 1000).toLocaleString();
   const hasReplies = comment.replies?.data?.children && comment.replies.data.children.length > 0;
-  const replyCount = hasReplies ? comment.replies.data.children.length : 0;
+  const replyCount = hasReplies ? comment.replies?.data?.children?.length : 0;
   
   // All comments use the same box style, but we adjust the margin based on depth
   const marginClass = depth === 0 ? "mb-6" : "mb-3";
@@ -44,7 +44,7 @@ export default function RedditComment({ comment, depth = 0 }: RedditCommentProps
             </summary>
             
             <div className="mt-4">
-              {comment.replies.data.children.map((reply) => (
+              {comment.replies?.data?.children?.map((reply) => (
                 <RedditComment 
                   key={reply.data.id} 
                   comment={reply.data}
