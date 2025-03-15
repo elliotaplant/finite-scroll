@@ -40,7 +40,7 @@ export default function URLForm() {
         <label htmlFor="url" className="text-xl font-medium">
           Paste a Reddit or Twitter/X link
         </label>
-        <div className="flex space-x-2">
+        <div className="flex flex-col md:flex-row gap-2">
           <input
             id="url"
             type="text"
@@ -53,7 +53,7 @@ export default function URLForm() {
             type="submit"
             className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md"
           >
-            View
+            Go
           </button>
         </div>
         {error && <div className="text-red-500 text-sm">{error}</div>}

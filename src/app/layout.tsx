@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Finite Scroll - Reddit & Twitter without infinite scroll",
   description:
-    "View Reddit and Twitter/X content without infinite scroll distractions or excessive media",
+    "View Reddit and Twitter/X posts without infinite scroll distractions or excessive media",
   keywords: ["reddit", "twitter", "x", "scroll", "finite", "social media"],
 };
 

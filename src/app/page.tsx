@@ -18,18 +18,12 @@ export default function Home() {
             What is Finite Scroll?
           </h2>
           <p className="mb-3">
-            Finite Scroll is a simple way to view Reddit and Twitter/X content
-            without the distractions of infinite scroll or excessive media.
+            Finite Scroll is a simple way to view Reddit and X posts without the
+            infinite scroll, recommendations, and ads.
           </p>
           <p className="mb-3">
-            Just paste a Reddit or Twitter link above, and we&apos;ll show you the
-            content in a clean, readable format - including all comments in one
-            page.
-          </p>
-          <p>
-            <strong>Currently supported:</strong> Reddit posts and comments.
-            <br />
-            <strong>Coming soon:</strong> Twitter/X tweets and replies.
+            Just paste a Reddit or X link above, and we&apos;ll show you the
+            post on it's own without distractions.
           </p>
         </div>
       </main>
