@@ -15,34 +15,48 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const viewport: Viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  maximumScale: 5,
-  minimumScale: 1,
-  userScalable: true,
-  themeColor: '#4A90E2',
-  viewportFit: 'cover'
+export async function generateViewport(): Promise<Viewport> {
+  // Access cookies from the request
+  const cookieStore = await cookies();
+  const theme = cookieStore.get(THEME_COOKIE_NAME)?.value || "light";
+  const viewport: Viewport = {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+    minimumScale: 1,
+    userScalable: true,
+    viewportFit: "cover",
+    themeColor: theme === "dark" ? "#030712" : "#ffffff",
+  };
+  return viewport;
 }
 
 export const metadata: Metadata = {
-  title: "Finite Scroll - Reddit & Twitter without infinite scroll",
-  description: "View Reddit and Twitter/X posts without infinite scroll distractions or excessive media",
+  title: "Finite Scroll",
+  description: "View Reddit and Twitter/X posts without distraction",
   keywords: ["reddit", "twitter", "x", "scroll", "finite", "social media"],
   manifest: "/site.webmanifest",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" }
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
     apple: [
-      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
     other: [
-      { url: "/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
-      { url: "/android-chrome-512x512.png", sizes: "512x512", type: "image/png" }
-    ]
+      {
+        url: "/android-chrome-192x192.png",
+        sizes: "192x192",
+        type: "image/png",
+      },
+      {
+        url: "/android-chrome-512x512.png",
+        sizes: "512x512",
+        type: "image/png",
+      },
+    ],
   },
   appleWebApp: {
     capable: true,
@@ -58,7 +72,8 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Finite Scroll",
     title: "Finite Scroll - Reddit & Twitter without infinite scroll",
-    description: "View Reddit and Twitter/X posts without infinite scroll distractions",
+    description:
+      "View Reddit and Twitter/X posts without infinite scroll distractions",
     images: [{ url: "/android-chrome-512x512.png" }],
   },
   twitter: {
