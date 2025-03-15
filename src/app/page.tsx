@@ -23,7 +23,7 @@ export default function Home() {
           </p>
           <p className="mb-3">
             Just paste a Reddit or X link above, and we&apos;ll show you the
-            post on it's own without distractions.
+            post on it&apos;s own without distractions.
           </p>
         </div>
       </main>
