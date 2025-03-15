@@ -41,8 +41,9 @@ export default function MarkdownRenderer({ children }: MarkdownRendererProps) {
         // Style links and handle video/media links
         a: ({ href, children, ...props }) => {
           if (href && isVideoLink(href)) {
+            // Return as a sibling element instead of nested in a paragraph
             return (
-              <div className="my-4 flex justify-center">
+              <span className="my-4 flex justify-center block">
                 <video 
                   src={href} 
                   controls 
@@ -52,11 +53,12 @@ export default function MarkdownRenderer({ children }: MarkdownRendererProps) {
                 >
                   {children}
                 </video>
-              </div>
+              </span>
             );
           } else if (href && isYoutubeLink(href)) {
+            // Return as a sibling element instead of nested in a paragraph
             return (
-              <div className="my-4 flex justify-center">
+              <span className="my-4 flex justify-center block">
                 <iframe
                   src={getYoutubeEmbedUrl(href)}
                   title="YouTube video"
@@ -64,7 +66,7 @@ export default function MarkdownRenderer({ children }: MarkdownRendererProps) {
                   className="w-full aspect-video rounded-md"
                   loading="lazy"
                 ></iframe>
-              </div>
+              </span>
             );
           } else {
             return (
@@ -144,14 +146,14 @@ export default function MarkdownRenderer({ children }: MarkdownRendererProps) {
         ),
         // Style images
         img: ({ ...props }) => (
-          <div className="flex justify-center my-4">
+          <span className="flex justify-center my-4 block">
             <img
               {...props}
               alt={props.alt || ''}
               className="max-w-full h-auto rounded-md"
               loading="lazy"
             />
-          </div>
+          </span>
         ),
       }}
     >
