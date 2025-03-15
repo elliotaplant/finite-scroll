@@ -46,7 +46,7 @@ export default function URLForm() {
             type="text"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
-            placeholder="https://reddit.com/r/whatever..."
+            placeholder="https://reddit.com/r/... or https://x.com/user/status/..."
             className="flex-1 border border-gray-300 dark:border-gray-700 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <button

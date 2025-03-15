@@ -1,5 +1,4 @@
 // Types for Twitter/X API responses
-// This is a placeholder and will be implemented later
 
 export interface TwitterTweet {
   id: string;
@@ -17,9 +16,17 @@ export interface TwitterUser {
   // Add more fields as needed
 }
 
+export interface TwitterMedia {
+  type: string;
+  url: string;
+  width?: number;
+  height?: number;
+  alt_text?: string;
+}
+
 export interface TwitterResponse {
   tweet: TwitterTweet;
   user: TwitterUser;
   replies?: TwitterTweet[];
-  // Add more fields as needed
+  media?: TwitterMedia[];
 }
