@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { getThemePreference } from "@/lib/theme";
+import ThemeToggle from "@/components/ThemeToggle";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -18,16 +20,26 @@ export const metadata: Metadata = {
   keywords: ["reddit", "twitter", "x", "scroll", "finite", "social media"],
 };
 
-export default function RootLayout({
+// Get the theme from cookies, but default to 'light' if not set
+async function getInitialTheme() {
+  const theme = await getThemePreference();
+  // Just return 'light' or 'dark', no 'system'
+  return theme === 'dark' ? 'dark' : 'light';
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const initialTheme = await getInitialTheme();
+  
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="en" className={initialTheme}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}>
+        <div className="absolute top-4 right-4 z-50">
+          <ThemeToggle initialTheme={initialTheme} />
+        </div>
         {children}
       </body>
     </html>

@@ -15,7 +15,8 @@ export default function MarkdownRenderer({ children }: MarkdownRendererProps) {
         a: ({ node, ...props }) => (
           <a 
             {...props} 
-            className="text-blue-500 hover:text-blue-700 hover:underline break-words"
+            style={{ color: 'var(--link-color)' }}
+            className="hover:underline break-words"
             target="_blank"
             rel="noopener noreferrer"
           />

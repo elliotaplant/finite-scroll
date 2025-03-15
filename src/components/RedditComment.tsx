@@ -21,14 +21,16 @@ export default function RedditComment({ comment, depth = 0 }: RedditCommentProps
   // Use smaller border radius for nested comments to indicate hierarchy
   const borderRadiusClass = depth > 2 ? "rounded" : "rounded-lg";
   
-  // Slightly different background color for deeper nesting to enhance readability
-  const bgClass = depth % 2 === 1 
-    ? "bg-gray-50 dark:bg-gray-900" 
-    : "bg-white dark:bg-black";
-  
   return (
     <div className={marginClass}>
-      <div className={`border border-gray-200 dark:border-gray-800 ${borderRadiusClass} p-4 ${bgClass}`}>
+      <div 
+        className={`${borderRadiusClass} p-4 border`}
+        style={{
+          backgroundColor: 'var(--comment-bg)',
+          borderColor: 'var(--comment-border)',
+          color: 'var(--foreground)'
+        }}
+      >
         <div className="mb-2">
           <span className="font-medium">u/{comment.author}</span>
           <span className="text-sm text-gray-500 ml-2">{commentDate}</span>

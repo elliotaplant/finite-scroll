@@ -1,8 +1,31 @@
 @import "tailwindcss";
 
+/* Default Light theme variables */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --card-background: #ffffff;
+  --card-border: #e5e7eb;
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --secondary-bg: #f9fafb;
+  --comment-bg: #ffffff;
+  --comment-border: #e5e7eb;
+  --link-color: #3b82f6;
+}
+
+/* Override variables for dark theme */
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --card-background: #0f0f0f;
+  --card-border: #262626;
+  --primary: #3b82f6;
+  --primary-hover: #60a5fa;
+  --secondary-bg: #121212;
+  --comment-bg: #0f0f0f;
+  --comment-border: #262626;
+  --link-color: #60a5fa;
 }
 
 @theme inline {
@@ -10,13 +33,6 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
@@ -32,24 +48,22 @@ details > summary {
   align-items: center;
   gap: 6px;
   padding: 5px 12px;
-  background-color: #f0f0f0;
-  border: 1px solid #e0e0e0;
+  background-color: var(--secondary-bg);
+  border: 1px solid var(--card-border);
   border-radius: 4px;
   font-size: 13px;
   font-weight: 500;
-  color: #555;
+  color: var(--link-color);
   cursor: pointer;
   user-select: none;
   transition: all 0.2s ease;
 }
 
 details > summary:hover {
-  background-color: #e8e8e8;
-  border-color: #d0d0d0;
+  background-color: var(--card-border);
 }
 
 details > summary:active {
-  background-color: #ddd;
   transform: translateY(1px);
 }
 
@@ -66,22 +80,4 @@ details[open] > summary::before {
 
 details > summary::-webkit-details-marker {
   display: none;
-}
-
-/* Dark mode styles */
-@media (prefers-color-scheme: dark) {
-  details > summary {
-    background-color: #333;
-    border-color: #444;
-    color: #ccc;
-  }
-  
-  details > summary:hover {
-    background-color: #3a3a3a;
-    border-color: #555;
-  }
-  
-  details > summary:active {
-    background-color: #444;
-  }
 }
