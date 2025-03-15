@@ -1,25 +1,22 @@
+"use client";
 import { THEME_COOKIE_NAME } from "@/lib/theme";
-import { cookies } from "next/headers";
+import { useState } from "react";
 
-interface ThemeToggleProps {
-  theme: "light" | "dark";
-}
+export default function ThemeToggle({
+  initialTheme: initialTheme,
+}: {
+  initialTheme: "light" | "dark";
+}) {
+  const [theme, setTheme] = useState(initialTheme);
 
-export default function ThemeToggle({ theme }: ThemeToggleProps) {
   async function toggleTheme() {
-    "use server";
     const newTheme = theme === "dark" ? "light" : "dark";
-
-    const cookieStore = await cookies();
-
-    // Set the cookie with a 1-year expiration
-    cookieStore.set({
-      name: THEME_COOKIE_NAME,
-      value: newTheme,
-      path: "/",
-      maxAge: 60 * 60 * 24 * 365, // 1 year in seconds
-      sameSite: "lax",
-    });
+    const expirationDate = new Date();
+    expirationDate.setFullYear(expirationDate.getFullYear() + 1);
+    document.cookie = `${THEME_COOKIE_NAME}=${newTheme}; expires=${expirationDate.toUTCString()}`;
+    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.add(newTheme);
+    setTheme(newTheme);
   }
 
   return (
