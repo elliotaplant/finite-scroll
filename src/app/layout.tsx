@@ -1,6 +1,6 @@
 import ThemeToggle from "@/components/ThemeToggle";
 import { THEME_COOKIE_NAME } from "@/lib/theme";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { cookies } from "next/headers";
 import "./globals.css";
@@ -15,10 +15,58 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  minimumScale: 1,
+  userScalable: true,
+  themeColor: '#4A90E2',
+  viewportFit: 'cover'
+}
+
 export const metadata: Metadata = {
-  title: "Finite Scroll",
-  description: "View Reddit and Twitter/X posts without distractions",
+  title: "Finite Scroll - Reddit & Twitter without infinite scroll",
+  description: "View Reddit and Twitter/X posts without infinite scroll distractions or excessive media",
   keywords: ["reddit", "twitter", "x", "scroll", "finite", "social media"],
+  manifest: "/site.webmanifest",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" }
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }
+    ],
+    other: [
+      { url: "/android-chrome-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/android-chrome-512x512.png", sizes: "512x512", type: "image/png" }
+    ]
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Finite Scroll",
+  },
+  applicationName: "Finite Scroll",
+  formatDetection: {
+    telephone: false,
+  },
+  metadataBase: new URL("https://finite-scroll.elliotplant.com"),
+  openGraph: {
+    type: "website",
+    siteName: "Finite Scroll",
+    title: "Finite Scroll - Reddit & Twitter without infinite scroll",
+    description: "View Reddit and Twitter/X posts without infinite scroll distractions",
+    images: [{ url: "/android-chrome-512x512.png" }],
+  },
+  twitter: {
+    card: "summary",
+    title: "Finite Scroll",
+    description: "Reddit & Twitter without infinite scroll distractions",
+    images: [{ url: "/android-chrome-512x512.png" }],
+  },
 };
 
 export default async function RootLayout({
@@ -35,26 +83,6 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className={theme}>
-      <head>
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/apple-touch-icon.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon-16x16.png"
-        />
-        <link rel="manifest" href="/site.webmanifest" />
-      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased relative bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 font-sans`}
       >
