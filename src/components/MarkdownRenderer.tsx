@@ -39,19 +39,13 @@ export default function MarkdownRenderer({ children }: MarkdownRendererProps) {
           <ol {...props} className="list-decimal pl-6 mb-4" />
         ),
         li: ({ ...props }) => <li {...props} className="mb-1" />,
-        // Style code blocks and inline code
-        code: ({ inline, ...props }) =>
-          inline ? (
-            <code
-              {...props}
-              className="bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded font-mono text-sm"
-            />
-          ) : (
-            <code
-              {...props}
-              className="block bg-gray-100 dark:bg-gray-800 p-2 rounded font-mono text-sm overflow-x-auto mb-4"
-            />
-          ),
+        // Style code blocks
+        code: ({ ...props }) => (
+          <code
+            {...props}
+            className="bg-gray-100 dark:bg-gray-800 p-2 rounded font-mono text-sm"
+          />
+        ),
         // Style blockquotes
         blockquote: ({ ...props }) => (
           <blockquote
