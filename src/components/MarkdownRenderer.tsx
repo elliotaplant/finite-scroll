@@ -11,7 +11,7 @@ export default function MarkdownRenderer({ children }: MarkdownRendererProps) {
     <ReactMarkdown
       components={{
         // Style links
-        a: ({ node, ...props }) => (
+        a: ({ ...props }) => (
           <a
             {...props}
             className="text-blue-500 dark:text-blue-400 hover:underline break-words"
@@ -20,27 +20,27 @@ export default function MarkdownRenderer({ children }: MarkdownRendererProps) {
           />
         ),
         // Style paragraphs
-        p: ({ node, ...props }) => <p {...props} className="mb-4" />,
+        p: ({ ...props }) => <p {...props} className="mb-4" />,
         // Style headings
-        h1: ({ node, ...props }) => (
+        h1: ({ ...props }) => (
           <h1 {...props} className="text-2xl font-bold mb-4 mt-6" />
         ),
-        h2: ({ node, ...props }) => (
+        h2: ({ ...props }) => (
           <h2 {...props} className="text-xl font-bold mb-3 mt-5" />
         ),
-        h3: ({ node, ...props }) => (
+        h3: ({ ...props }) => (
           <h3 {...props} className="text-lg font-bold mb-2 mt-4" />
         ),
         // Style lists
-        ul: ({ node, ...props }) => (
+        ul: ({ ...props }) => (
           <ul {...props} className="list-disc pl-6 mb-4" />
         ),
-        ol: ({ node, ...props }) => (
+        ol: ({ ...props }) => (
           <ol {...props} className="list-decimal pl-6 mb-4" />
         ),
-        li: ({ node, ...props }) => <li {...props} className="mb-1" />,
+        li: ({ ...props }) => <li {...props} className="mb-1" />,
         // Style code blocks and inline code
-        code: ({ node, inline, ...props }) =>
+        code: ({ inline, ...props }) =>
           inline ? (
             <code
               {...props}
@@ -53,21 +53,21 @@ export default function MarkdownRenderer({ children }: MarkdownRendererProps) {
             />
           ),
         // Style blockquotes
-        blockquote: ({ node, ...props }) => (
+        blockquote: ({ ...props }) => (
           <blockquote
             {...props}
             className="border-l-4 border-gray-300 dark:border-gray-600 pl-4 italic mb-4"
           />
         ),
         // Style horizontal rules
-        hr: ({ node, ...props }) => (
+        hr: ({ ...props }) => (
           <hr
             {...props}
             className="my-6 border-t border-gray-300 dark:border-gray-600"
           />
         ),
         // Style tables
-        table: ({ node, ...props }) => (
+        table: ({ ...props }) => (
           <div className="overflow-x-auto mb-4">
             <table
               {...props}
@@ -75,16 +75,16 @@ export default function MarkdownRenderer({ children }: MarkdownRendererProps) {
             />
           </div>
         ),
-        thead: ({ node, ...props }) => (
+        thead: ({ ...props }) => (
           <thead {...props} className="bg-gray-100 dark:bg-gray-800" />
         ),
-        th: ({ node, ...props }) => (
+        th: ({ ...props }) => (
           <th
             {...props}
             className="px-3 py-2 text-left text-sm font-semibold"
           />
         ),
-        td: ({ node, ...props }) => (
+        td: ({ ...props }) => (
           <td {...props} className="px-3 py-2 whitespace-nowrap text-sm" />
         ),
       }}

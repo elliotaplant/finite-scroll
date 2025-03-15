@@ -22,7 +22,7 @@ export default function Home() {
             without the distractions of infinite scroll or excessive media.
           </p>
           <p className="mb-3">
-            Just paste a Reddit or Twitter link above, and we'll show you the
+            Just paste a Reddit or Twitter link above, and we&apos;ll show you the
             content in a clean, readable format - including all comments in one
             page.
           </p>

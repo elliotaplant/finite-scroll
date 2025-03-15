@@ -29,7 +29,7 @@ export default function URLForm() {
 
       // Navigate to the appropriate page with the URL as a query parameter
       router.push(`/${serviceType}?url=${encodeURIComponent(url)}`);
-    } catch (err) {
+    } catch {
       setError("Please enter a valid URL");
     }
   };

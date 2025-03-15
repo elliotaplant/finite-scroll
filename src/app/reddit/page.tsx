@@ -113,7 +113,7 @@ export default async function RedditPage({ searchParams }: PageProps) {
           <p className="mt-4">This could be because:</p>
           <ul className="list-disc ml-5 mt-2">
             <li>The URL is not a valid Reddit post URL</li>
-            <li>The Reddit post doesn't exist or has been removed</li>
+            <li>The Reddit post doesn&apos;t exist or has been removed</li>
             <li>There was an issue connecting to Reddit</li>
           </ul>
         </div>

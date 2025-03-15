@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { fetchTwitterContent } from "@/lib/twitter";
 
 interface PageProps {
   searchParams: Promise<{ url?: string }>;
@@ -57,7 +56,7 @@ export default async function TwitterPage({ searchParams }: PageProps) {
           Twitter/X content viewing will be implemented in a future update.
         </p>
         <p className="text-sm text-gray-500 dark:text-gray-400">
-          We'll be working on integrating with the Twitter/X API to fetch tweets
+          We&apos;ll be working on integrating with the Twitter/X API to fetch tweets
           and their replies.
         </p>
       </div>
