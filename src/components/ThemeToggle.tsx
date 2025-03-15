@@ -1,46 +1,36 @@
-'use client';
-
-import { useState, useEffect } from 'react';
-import { setThemePreference } from '@/app/actions';
+import { THEME_COOKIE_NAME } from "@/lib/theme";
+import { cookies } from "next/headers";
 
 interface ThemeToggleProps {
-  initialTheme: 'light' | 'dark';
+  theme: "light" | "dark";
 }
 
-export default function ThemeToggle({ initialTheme }: ThemeToggleProps) {
-  const [theme, setTheme] = useState<'light' | 'dark'>(initialTheme);
-  const [mounted, setMounted] = useState(false);
-  
-  // Only show the toggle after mounting to avoid hydration mismatch
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  
-  function toggleTheme() {
-    const newTheme = theme === 'dark' ? 'light' : 'dark';
-    
-    // Update local state
-    setTheme(newTheme);
-    
-    // Update cookie via server action
-    setThemePreference(newTheme);
-    
-    // Update DOM immediately without waiting for server action
-    document.documentElement.classList.remove('light', 'dark');
-    document.documentElement.classList.add(newTheme);
+export default function ThemeToggle({ theme }: ThemeToggleProps) {
+  async function toggleTheme() {
+    "use server";
+    const newTheme = theme === "dark" ? "light" : "dark";
+
+    const cookieStore = await cookies();
+
+    // Set the cookie with a 1-year expiration
+    cookieStore.set({
+      name: THEME_COOKIE_NAME,
+      value: newTheme,
+      path: "/",
+      maxAge: 60 * 60 * 24 * 365, // 1 year in seconds
+      sameSite: "lax",
+    });
   }
-  
-  if (!mounted) {
-    return <div className="w-8 h-8" />; // Placeholder to avoid layout shift
-  }
-  
+
   return (
     <button
       onClick={toggleTheme}
       className="flex items-center justify-center w-8 h-8 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors cursor-pointer"
-      aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+      aria-label={
+        theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
+      }
     >
-      {theme === 'dark' ? (
+      {theme === "dark" ? (
         <SunIcon className="h-4 w-4" />
       ) : (
         <MoonIcon className="h-4 w-4" />

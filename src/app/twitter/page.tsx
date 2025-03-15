@@ -8,7 +8,7 @@ interface PageProps {
 export default async function TwitterPage({ searchParams }: PageProps) {
   // In Next.js 15, searchParams is now async and must be awaited
   const { url } = await searchParams;
-  
+
   if (!url) {
     return (
       <div className="max-w-4xl mx-auto py-8 px-4">
@@ -21,7 +21,8 @@ export default async function TwitterPage({ searchParams }: PageProps) {
         <h1 className="text-2xl font-bold mb-4">Twitter/X Viewer</h1>
         <div className="p-8 border border-gray-200 dark:border-gray-800 rounded-lg">
           <p className="text-center mb-4">
-            No URL provided. Please go back to the home page and enter a Twitter URL.
+            No URL provided. Please go back to the home page and enter a Twitter
+            URL.
           </p>
           <div className="flex justify-center">
             <Link
@@ -49,7 +50,7 @@ export default async function TwitterPage({ searchParams }: PageProps) {
         </Link>
         <h1 className="text-2xl font-bold mb-4">Twitter/X Viewer</h1>
       </div>
-      
+
       <div className="p-8 border border-gray-200 dark:border-gray-800 rounded-lg text-center">
         <h2 className="text-xl font-bold mb-4">Coming Soon!</h2>
         <p className="mb-4">

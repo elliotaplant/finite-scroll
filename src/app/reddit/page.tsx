@@ -11,7 +11,7 @@ interface PageProps {
 export default async function RedditPage({ searchParams }: PageProps) {
   // In Next.js 15, searchParams is now async and must be awaited
   const { url } = await searchParams;
-  
+
   if (!url) {
     return (
       <div className="max-w-4xl mx-auto py-8 px-4">
@@ -24,7 +24,8 @@ export default async function RedditPage({ searchParams }: PageProps) {
         <h1 className="text-2xl font-bold mb-4">Reddit Viewer</h1>
         <div className="p-8 border border-gray-200 dark:border-gray-800 rounded-lg">
           <p className="text-center mb-4">
-            No URL provided. Please go back to the home page and enter a Reddit URL.
+            No URL provided. Please go back to the home page and enter a Reddit
+            URL.
           </p>
           <div className="flex justify-center">
             <Link
@@ -38,11 +39,11 @@ export default async function RedditPage({ searchParams }: PageProps) {
       </div>
     );
   }
-  
+
   try {
     // Fetch the Reddit content on the server
     const redditData = await fetchRedditContent(url);
-    
+
     // Process the response
     if (
       !Array.isArray(redditData) ||
@@ -51,12 +52,12 @@ export default async function RedditPage({ searchParams }: PageProps) {
     ) {
       throw new Error("Invalid Reddit data format");
     }
-    
+
     const post = redditData[0].data.children[0].data;
     const comments = redditData[1].data.children
       .filter((comment) => comment.kind !== "more") // Filter out "load more" placeholders
       .map((comment) => comment.data);
-    
+
     return (
       <div className="max-w-4xl mx-auto py-8 px-4">
         <div className="mb-8">
@@ -68,15 +69,15 @@ export default async function RedditPage({ searchParams }: PageProps) {
           </Link>
           <h1 className="text-2xl font-bold mb-4">Reddit Viewer</h1>
         </div>
-        
+
         <RedditPost post={post} />
-        
+
         <div className="flex items-center justify-between mt-8 mb-4">
           <h2 className="text-xl font-bold">Comments ({comments.length})</h2>
-          
+
           {/* Add more controls here if needed, like sorting options */}
         </div>
-        
+
         {comments.length > 0 ? (
           <div>
             {comments.map((comment: RedditCommentData) => (
@@ -105,11 +106,11 @@ export default async function RedditPage({ searchParams }: PageProps) {
             Error Loading Content
           </h2>
           <p className="text-red-600 dark:text-red-400">
-            {error instanceof Error ? error.message : "An unknown error occurred"}
+            {error instanceof Error
+              ? error.message
+              : "An unknown error occurred"}
           </p>
-          <p className="mt-4">
-            This could be because:
-          </p>
+          <p className="mt-4">This could be because:</p>
           <ul className="list-disc ml-5 mt-2">
             <li>The URL is not a valid Reddit post URL</li>
             <li>The Reddit post doesn't exist or has been removed</li>

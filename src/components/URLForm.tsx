@@ -12,25 +12,23 @@ export default function URLForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    
+
     // Validate URL
     if (!url) {
       setError("Please enter a URL");
       return;
     }
-    
+
     try {
-      const parsedUrl = new URL(url);
       const serviceType = getServiceType(url);
-      
+
       if (!serviceType) {
         setError("URL must be from Reddit or Twitter/X");
         return;
       }
-      
+
       // Navigate to the appropriate page with the URL as a query parameter
       router.push(`/${serviceType}?url=${encodeURIComponent(url)}`);
-      
     } catch (err) {
       setError("Please enter a valid URL");
     }

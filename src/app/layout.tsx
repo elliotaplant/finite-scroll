@@ -1,7 +1,8 @@
+import ThemeToggle from "@/components/ThemeToggle";
+import { THEME_COOKIE_NAME } from "@/lib/theme";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { getThemePreference } from "@/lib/theme";
-import ThemeToggle from "@/components/ThemeToggle";
+import { cookies } from "next/headers";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -16,29 +17,30 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Finite Scroll - Reddit & Twitter without infinite scroll",
-  description: "View Reddit and Twitter/X content without infinite scroll distractions or excessive media",
+  description:
+    "View Reddit and Twitter/X content without infinite scroll distractions or excessive media",
   keywords: ["reddit", "twitter", "x", "scroll", "finite", "social media"],
 };
-
-// Get the theme from cookies, but default to 'light' if not set
-async function getInitialTheme() {
-  const theme = await getThemePreference();
-  // Just return 'light' or 'dark', no 'system'
-  return theme === 'dark' ? 'dark' : 'light';
-}
 
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const initialTheme = await getInitialTheme();
-  
+  const cookieStore = await cookies();
+  const themeCookie = cookieStore.get(THEME_COOKIE_NAME);
+
+  // Default to light if no cookie is set
+  const theme =
+    (themeCookie?.value as "light" | "dark") === "dark" ? "dark" : "light";
+
   return (
-    <html lang="en" className={initialTheme}>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased relative bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 font-sans`}>
+    <html lang="en" className={theme}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased relative bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 font-sans`}
+      >
         <div className="absolute top-4 right-4 z-50">
-          <ThemeToggle initialTheme={initialTheme} />
+          <ThemeToggle theme={theme} />
         </div>
         {children}
       </body>
