@@ -1,6 +1,22 @@
 // Types for Reddit API responses
 // Note: This is a simplified version focusing on the data we need
 
+export interface RedditMedia {
+  reddit_video?: {
+    fallback_url: string;
+    height: number;
+    width: number;
+    duration: number;
+  };
+  oembed?: {
+    provider_url: string;
+    url: string;
+    html: string;
+    title: string;
+  };
+  type?: string;
+}
+
 export interface RedditPostData {
   id: string;
   title: string;
@@ -17,6 +33,9 @@ export interface RedditPostData {
   subreddit_name_prefixed: string;
   is_video: boolean;
   is_self: boolean;
+  media?: RedditMedia;
+  secure_media?: RedditMedia;
+  post_hint?: string;
 }
 
 export interface RedditCommentData {
