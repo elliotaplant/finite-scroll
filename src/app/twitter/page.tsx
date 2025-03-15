@@ -55,12 +55,11 @@ export default async function TwitterPage({ searchParams }: PageProps) {
         <p className="mb-4">
           Twitter/X content viewing will be implemented in a future update.
         </p>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-gray-500 dark:text-gray-400">
           We'll be working on integrating with the Twitter/X API to fetch tweets
           and their replies.
         </p>
       </div>
     </div>
   );
-}
 }

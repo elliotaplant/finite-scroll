@@ -36,7 +36,7 @@ export default async function RootLayout({
   
   return (
     <html lang="en" className={initialTheme}>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased relative bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 font-sans`}>
         <div className="absolute top-4 right-4 z-50">
           <ThemeToggle initialTheme={initialTheme} />
         </div>
