@@ -43,7 +43,7 @@ export default function MarkdownRenderer({ children }: MarkdownRendererProps) {
         code: ({ ...props }) => (
           <code
             {...props}
-            className="bg-gray-100 dark:bg-gray-800 p-2 rounded font-mono text-sm"
+            className="block bg-gray-100 dark:bg-gray-800 p-2 rounded font-mono text-sm overflow-x-auto mb-4"
           />
         ),
         // Style blockquotes
