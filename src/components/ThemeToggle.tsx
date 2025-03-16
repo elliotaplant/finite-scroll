@@ -16,6 +16,11 @@ export default function ThemeToggle({
     document.cookie = `${THEME_COOKIE_NAME}=${newTheme}; expires=${expirationDate.toUTCString()}`;
     document.documentElement.classList.remove("light", "dark");
     document.documentElement.classList.add(newTheme);
+    
+    // Update viewport theme color meta tag
+    const themeColor = newTheme === "dark" ? "#030712" : "#ffffff";
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", themeColor);
+    
     setTheme(newTheme);
   }
 
