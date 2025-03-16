@@ -4,6 +4,8 @@ import RedditComment from "@/components/RedditComment";
 import Link from "next/link";
 import { RedditCommentData } from "@/types/reddit";
 
+export const runtime = "edge";
+
 interface PageProps {
   searchParams: Promise<{ url?: string }>;
 }

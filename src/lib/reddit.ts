@@ -11,10 +11,11 @@ export async function fetchRedditContent(url: string): Promise<RedditResponse> {
 
   const response = await fetch(apiUrl, {
     headers: {
-      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
-      "Accept": "application/json",
-      "Referer": "https://www.reddit.com/",
-      "Connection": "keep-alive",
+      "User-Agent":
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+      Accept: "application/json",
+      Referer: "https://www.reddit.com/",
+      Connection: "keep-alive",
       "Sec-Fetch-Dest": "empty",
       "Sec-Fetch-Mode": "cors",
       "Sec-Fetch-Site": "same-origin",
@@ -24,10 +25,18 @@ export async function fetchRedditContent(url: string): Promise<RedditResponse> {
   });
 
   if (!response.ok) {
-    console.error(`Reddit API error: ${response.status} ${response.statusText}`);
-    const errorText = await response.text().catch(() => '');
-    console.error(`Response body: ${errorText.substring(0, 500)}${errorText.length > 500 ? '...' : ''}`);
-    throw new Error(`Failed to fetch from Reddit: ${response.status} ${response.statusText}`);
+    console.error(
+      `Reddit API error: ${response.status} ${response.statusText}`
+    );
+    const errorText = await response.text().catch(() => "");
+    console.error(
+      `Response body: ${errorText.substring(0, 500)}${
+        errorText.length > 500 ? "..." : ""
+      }`
+    );
+    throw new Error(
+      `Failed to fetch from Reddit: ${response.status} ${response.statusText}`
+    );
   }
 
   return response.json() as Promise<RedditResponse>;
